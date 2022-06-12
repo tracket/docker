@@ -1,0 +1,42 @@
+version: '3'
+services:
+  web:
+    environment:
+      - "PHP_OPCACHE_ENABLE=0"
+    volumes:
+      - .:/srv/src
+
+  scheduler:
+    environment:
+      - "PHP_OPCACHE_ENABLE=0"
+    volumes:
+      - .:/srv/src
+
+  nginx:
+    volumes:
+      - ./public:/srv/src/public
+
+  database:
+    environment:
+      POSTGRES_DB: tracket_local
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: devpass
+
+  node:
+    image: node:16
+    container_name: tracket_node
+    volumes:
+      - .:/srv/src
+
+  composer:
+    build:
+      context: .
+      dockerfile: docker/composer/Dockerfile
+    env_file: .env
+    environment:
+      - "PHP_OPCACHE_ENABLE=0"
+    volumes:
+      - .:/srv/src
+
+volumes:
+  db:

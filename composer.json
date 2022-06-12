@@ -1,0 +1,38 @@
+{
+  "name": "tracket/docker",
+  "description": "Docker files for running a Tracket application.",
+  "keywords": [
+    "tracket",
+    "docker"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.3|^8.0",
+    "illuminate/contracts": "^8.0|^9.0",
+    "illuminate/console": "^8.0|^9.0",
+    "illuminate/support": "^8.0|^9.0"
+  },
+  "bin": [
+    "bin/env"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Tracket\\Docker\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Tracket\\Docker\\DockerServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
