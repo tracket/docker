@@ -12,8 +12,6 @@
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - 'tracket-mysql:/var/lib/mysql'
-        networks:
-            - sail
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
