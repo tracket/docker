@@ -119,6 +119,7 @@ class InstallCommand extends Command
             $environment = str_replace('DB_HOST=127.0.0.1', "DB_HOST=database", $environment);
         }
 
+        $environment = str_replace('DB_NAME=laravel', "DB_NAME=tracket", $environment);
         $environment = str_replace('DB_USERNAME=root', "DB_USERNAME=tracket", $environment);
         $environment = preg_replace("/DB_PASSWORD=(.*)/", "DB_PASSWORD=devpassword", $environment);
 
