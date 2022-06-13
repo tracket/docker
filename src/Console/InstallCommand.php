@@ -88,6 +88,7 @@ class InstallCommand extends Command
             })->implode("\n");
 
         $dockerCompose = file_get_contents(__DIR__ . '/../../stubs/docker-compose.stub');
+        $dockerComposeLocal = file_get_contents(__DIR__ . '/../../stubs/docker-compose.local.stub');
 
         $dockerCompose = str_replace('{{depends}}', empty($depends) ? '' : '        '.$depends, $dockerCompose);
         $dockerCompose = str_replace('{{services}}', $stubs, $dockerCompose);
@@ -97,6 +98,7 @@ class InstallCommand extends Command
         $dockerCompose = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $dockerCompose);
 
         file_put_contents($this->laravel->basePath('docker-compose.yml'), $dockerCompose);
+        file_put_contents($this->laravel->basePath('docker-compose.local.yml'), $dockerComposeLocal);
     }
 
     /**

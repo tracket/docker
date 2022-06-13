@@ -4,8 +4,8 @@ namespace Tracket\Docker;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Sail\Console\InstallCommand;
-use Laravel\Sail\Console\PublishCommand;
+use Tracket\Docker\Console\InstallCommand;
+use Tracket\Docker\Console\PublishCommand;
 
 class DockerServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -44,11 +44,11 @@ class DockerServiceProvider extends ServiceProvider implements DeferrableProvide
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../runtimes' => $this->app->basePath('docker'),
+                __DIR__ . '/../images' => $this->app->basePath('docker'),
             ], ['tracket-docker']);
 
             $this->publishes([
-                __DIR__ . '/../bin/sail' => $this->app->basePath('bin'),
+                __DIR__ . '/../bin' => $this->app->basePath('bin'),
             ], ['tracket-bin']);
         }
     }

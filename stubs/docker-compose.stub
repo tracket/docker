@@ -42,28 +42,15 @@ services:
       - web
     restart: unless-stopped
 
-  database:
-    image: timescale/timescaledb:latest-pg12
-    container_name: tracket_db
-    volumes:
-      - db:/var/lib/postgresql/data/
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_DB: tracket_local
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: devpass
-    restart: unless-stopped
-
   cache:
     image: redis:6.0-alpine
     container_name: tracket_cache
     restart: unless-stopped
 
-volumes:
-  db:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /var/db/pgsql
+{{services}}
+
+networks:
+  tracket:
+    driver: bridge
+
+{{volumes}}

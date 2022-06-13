@@ -1,6 +1,7 @@
 {
   "name": "tracket/docker",
   "description": "Docker files for running a Tracket application.",
+  "version": "dev-main",
   "keywords": [
     "tracket",
     "docker"

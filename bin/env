@@ -1,0 +1,53 @@
+#!/bin/sh
+
+env_up() {
+    docker-compose \
+        -f docker-compose.yml \
+        -f docker-compose.local.yml \
+        up
+}
+
+env_down() {
+    docker-compose \
+        -f docker-compose.yml \
+        -f docker-compose.local.yml \
+        down --remove-orphans
+}
+
+env_destroy() {
+    docker-compose \
+        -f docker-compose.yml \
+        -f docker-compose.local.yml \
+        down -v
+}
+
+env_build() {
+    docker-compose \
+        -f docker-compose.yml \
+        -f docker-compose.local.yml \
+        build
+}
+
+
+case "$1" in
+    "up")
+        env_up
+        exit 0
+        ;;
+    "down")
+        env_down
+        exit 0
+        ;;
+    "destroy")
+        env_destroy
+        exit 0
+        ;;
+    "build")
+        env_build
+        exit 0
+        ;;
+   *)
+        echo "Usage: {up}" >&2
+        exit 3
+        ;;
+esac

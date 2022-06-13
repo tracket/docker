@@ -28,15 +28,20 @@ class PublishCommand extends Command
     public function handle()
     {
         $this->call('vendor:publish', ['--tag' => 'tracket-docker']);
+        $this->call('vendor:publish', ['--tag' => 'tracket-bin']);
+
+        chmod($this->laravel->basePath('bin/artisan'), 0755);
+        chmod($this->laravel->basePath('bin/composer'), 0755);
+        chmod($this->laravel->basePath('bin/env'), 0755);
 
         file_put_contents(
             $this->laravel->basePath('docker-compose.yml'),
             str_replace(
                 [
-                    './vendor/laravel/sail/runtimes/8.1',
+                    './vendor/tracket/docker/runtimes/8.1',
                 ],
                 [
-                    './docker/8.1',
+                    './docker/php',
                 ],
                 file_get_contents($this->laravel->basePath('docker-compose.yml'))
             )
