@@ -25,6 +25,7 @@ services:
   node:
     image: node:16
     container_name: tracket_node
+    working_dir: /srv/src
     volumes:
       - .:/srv/src
 
