@@ -36,6 +36,10 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
     container_name: tracket_nginx
+    volumes:
+      - ./public:/srv/src/public:ro
+      - ./storage/app/public:/srv/src/storage/app/public:ro
+      - ./themes:/srv/src/themes:ro
     ports:
       - 80:80
     depends_on:
