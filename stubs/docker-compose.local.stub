@@ -12,15 +12,12 @@ services:
     volumes:
       - .:/srv/src
 
-  nginx:
-    volumes:
-      - ./public:/srv/src/public
-
   database:
     environment:
-      POSTGRES_DB: tracket_local
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: devpass
+      PGPASSWORD: '${DB_PASSWORD:-secret}'
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
 
   node:
     image: node:16
@@ -33,6 +30,7 @@ services:
     build:
       context: .
       dockerfile: docker/composer/Dockerfile
+    container_name: tracket_composer
     env_file: .env
     environment:
       - "PHP_OPCACHE_ENABLE=0"

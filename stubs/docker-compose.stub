@@ -53,8 +53,4 @@ services:
 
 {{services}}
 
-networks:
-  tracket:
-    driver: bridge
-
 {{volumes}}
