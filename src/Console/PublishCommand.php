@@ -33,6 +33,7 @@ class PublishCommand extends Command
         chmod($this->laravel->basePath('bin/artisan'), 0755);
         chmod($this->laravel->basePath('bin/composer'), 0755);
         chmod($this->laravel->basePath('bin/env'), 0755);
+        chmod($this->laravel->basePath('bin/npm'), 0755);
 
         file_put_contents(
             $this->laravel->basePath('docker-compose.yml'),

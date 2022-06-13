@@ -1,0 +1,6 @@
+#!/bin/sh
+
+docker-compose -f docker-compose.yml \
+    -f docker-compose.local.yml \
+    -f docker-compose.build.yml \
+    run node npm ${@:1}
